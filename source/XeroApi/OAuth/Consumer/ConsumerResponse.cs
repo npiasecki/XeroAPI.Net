@@ -58,7 +58,16 @@ namespace DevDefined.OAuth.Consumer
                 ContentType = webResponse.Headers["Content-Type"];
 
             if (webResponse.Headers["Content-Length"] != string.Empty)
-                ContentLength = int.Parse(webResponse.Headers["Content-Length"]);
+            {
+                try
+                {
+                    ContentLength = int.Parse(webResponse.Headers["Content-Length"]);
+                }
+                catch
+                {
+                    // Don't care
+                }
+            }
 
             TimeTaken = timeTaken;
             ContentEncoding = webResponse.ContentEncoding;
